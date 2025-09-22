@@ -1,6 +1,4 @@
-﻿
-
-int tamanho = 100;
+﻿int tamanho = 100;
 int[] vetor = new int[tamanho];
 
 Random random = new Random();
@@ -14,14 +12,10 @@ for (int i = 0; i < tamanho; i++)
     Console.Write(vetor[i] + " ");
 }
 
-
-
 Array.Sort(vetor);
-	
-Console.WriteLine("\n");
 
-  for (int i = 0; i < tamanho; i++)
+Console.WriteLine("\n");
+for (int i = 0; i < tamanho; i++)
 {
     Console.Write(vetor[i] + " ");
 }
-

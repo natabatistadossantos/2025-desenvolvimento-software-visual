@@ -26,24 +26,31 @@ for (int i = 0; i < tamanho; i++)
 //os valores
 //8 - Imprimir o vetor com valores ordenados
 
-for (int a = 0; a < tamanho - 1; a++)
+bool troca = false;
+do
 {
+    troca = false;
     for (int i = 0; i < vetor.Length - 1; i++)
     {
         int atual = vetor[i];
         int proximo = vetor[i + 1];
         if (atual > proximo)
         {
+            troca = true;
             int aux = atual;
             vetor[i] = proximo;
             vetor[i + 1] = aux;
         }
     }
-}
+} while (troca);
 
 Console.WriteLine("\n");
+for (int i = 0; i < tamanho; i++)
+{
+    Console.Write(vetor[i] + " ");
+}
 
-    for (int i = 0; i < tamanho-1; i++)
-    {
-        Console.WriteLine(vetor[i]);
-    }
+//9 - Percorrer o vetor com valores aleatórios
+//10 - Percorrer o vetor até ordenar ele todo
+//11 - Ou percorrer o vetor de forma decrescente até
+//ordenar todo o vetor

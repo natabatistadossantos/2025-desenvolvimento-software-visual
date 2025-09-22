@@ -1,2 +1,2 @@
-# 2025-desenvolvimento-software-visual
-projetos da aula de segunda de software visual
+# 2025-desenvolvimento-software-visual-segunda
+Repositório com os projetos da disciplina de Desenvolvimento de Software Visual de segunda-feira de noite.
