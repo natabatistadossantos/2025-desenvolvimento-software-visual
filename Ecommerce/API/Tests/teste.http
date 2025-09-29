@@ -16,3 +16,9 @@ Content-Type: application/json
     "quantidade" : 123,
     "preco" : 57.75
 }
+
+### remover produto por nome 
+DELETE  http://localhost:5190/api/produto/delete/d76f7429-5a32-4cd7-b547-c6c57d99b87a
+
+### alterar
+DELETE http://localhost:5190//api/produto/alterar/
