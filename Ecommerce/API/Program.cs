@@ -76,7 +76,7 @@ app.MapDelete("/api/produto/delete/{id}", ([FromRoute] string id) =>
     return Results.NoContent();
 });
 
-app.MapDelete("/api/produto/alterar/{id}", ([FromRoute] string id, [FromBody] Produto produtoAlterado) =>
+app.MapPatch("/api/produto/alterar/{id}", ([FromRoute] string id, [FromBody] Produto produtoAlterado) =>
 {
     Produto? resultado = produtos.FirstOrDefault(p => p.Id == id);
     if (resultado is null)
@@ -86,7 +86,7 @@ app.MapDelete("/api/produto/alterar/{id}", ([FromRoute] string id, [FromBody] Pr
     resultado.Nome = produtoAlterado.Nome;
     resultado.Quantidade = produtoAlterado.Quantidade;
     resultado.Preco = produtoAlterado.Preco;
-    return Results.NoContent();
+    return Results.Ok();
 });
 //Implementar a remoção e atualização do produto
 app.Run();
