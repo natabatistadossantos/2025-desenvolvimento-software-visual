@@ -1,4 +1,5 @@
 using API.Models;
+using Microsoft.AspNetCore.Mvc;
 
 Console.Clear();
 var builder = WebApplication.CreateBuilder(args);
@@ -19,31 +20,49 @@ List<Produto> produtos = new List<Produto>
     new Produto { Nome = "Cinto de Couro", Quantidade = 35, Preco = 49.90 }
 };
 
-//Funcionalidade - Requisições
-// - URL/Caminho/Endereço
-// - Um método HTTP
-
-// Métodos HTTP:
-// GET    - Recupera dados do servidor
-// POST   - Envia dados para criar um recurso
-// PUT    - Atualiza um recurso existente
-// DELETE - Remove um recurso
-// PATCH  - Atualiza parcialmente um recurso
-
 app.MapGet("/", () => "API de Produtos");
 
 //GET: /api/produto/listar
 app.MapGet("/api/produto/listar", () =>
 {
-    return produtos;
+    //Validar a lista de produtos para saber 
+    //se existe algo dentro
+    if (produtos.Any())
+    {
+        return Results.Ok(produtos);
+    }
+    return Results.NotFound("Lista vazia!");
+});
+
+//GET: /api/produto/buscar/nome_do_produto
+app.MapGet("/api/produto/buscar/{nome}", (string nome) =>
+{
+    //Expressão lambda
+    Produto? resultado =
+        produtos.FirstOrDefault(x => x.Nome == nome);
+    if (resultado is null)
+    {
+        return Results.NotFound("Produto não encontrado!");        
+    }
+    return Results.Ok(resultado);
 });
 
 //POST: /api/produto/cadastrar
 app.MapPost("/api/produto/cadastrar",
-    (Produto produto) =>
+    ([FromBody] Produto produto) =>
 {
+    //Não permitir o cadastro de um produto
+    //com o mesmo nome
+    foreach (Produto produtoCadastrado in produtos)
+    {
+        if (produtoCadastrado.Nome == produto.Nome)
+        {
+            return Results.Conflict("Produto já cadastrado!");
+        }
+    }
     produtos.Add(produto);
+    return Results.Created("", produto);
 });
 
-
+//Implementar a remoção e atualização do produto
 app.Run();
