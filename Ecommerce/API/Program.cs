@@ -51,8 +51,8 @@ app.MapGet("/api/produto/buscar/{nome}", (string nome) =>
 app.MapPost("/api/produto/cadastrar",
     ([FromBody] Produto produto) =>
 {
-    //Não permitir o cadastro de um produto
-    //com o mesmo nome
+    //não permitir o cadastro de um produto
+    
     foreach (Produto produtoCadastrado in produtos)
     {
         if (produtoCadastrado.Nome == produto.Nome)
